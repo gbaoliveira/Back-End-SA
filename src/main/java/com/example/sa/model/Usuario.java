@@ -9,9 +9,16 @@ import jakarta.persistence.*;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long cod;
     private String nome;
     private String email;
     private String accountType;
     private String senha;
+    
+    public String getEmail(){
+        return this.email;
+    }
+    public String getSenha(){
+        return this.senha;
+    }
 }
