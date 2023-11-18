@@ -1,4 +1,7 @@
 package com.example.sa.model;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,10 +24,10 @@ public class Reserva {
     @ManyToOne
     @JoinColumn(name = "ambiente_id")
     private Ambiente ambiente;
-
-    private String dataReserva;
-    private String dataHoraInicio;
-    private String dataHoraFim;
+    
+    private String motivo;
+    private LocalDate data;
+    private LocalTime hora;
 
     // Getters e setters
 }
