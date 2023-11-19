@@ -21,5 +21,11 @@ public class UsuarioController {
     public Usuario criarUsuario(@RequestBody Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
-
+    @DeleteMapping("/delete")
+    public void deleteUsuario(@RequestParam String email) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (usuario != null) {
+            usuarioRepository.delete(usuario);
+        }
+    }
 }

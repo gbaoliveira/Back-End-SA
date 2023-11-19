@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cod;
+    private Long id;
     private String nome;
     private String email;
     private String accountType;

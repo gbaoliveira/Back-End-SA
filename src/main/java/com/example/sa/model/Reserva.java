@@ -16,7 +16,7 @@ public class Reserva {
     private Long id;
 
     // Mapeamento da chave estrangeira para a classe Usuario
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
