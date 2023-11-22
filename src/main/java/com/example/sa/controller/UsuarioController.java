@@ -4,6 +4,7 @@ import com.example.sa.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 @CrossOrigin(origins = "http://localhost:19006") // Endereço do front
@@ -20,6 +21,15 @@ public class UsuarioController {
    @PostMapping
     public Usuario criarUsuario(@RequestBody Usuario usuario) {
         return usuarioRepository.save(usuario);
+    }
+     @GetMapping("/{id}")
+    public ResponseEntity<Usuario> buscar(@PathVariable Long id) {
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        if (usuario.isPresent()) {
+            return ResponseEntity.ok(usuario.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
     @DeleteMapping("/delete")
     public void deleteUsuario(@RequestParam String email) {

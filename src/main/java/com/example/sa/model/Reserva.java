@@ -15,19 +15,16 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Mapeamento da chave estrangeira para a classe Usuario
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
-    // Mapeamento da chave estrangeira para a classe Ambiente
     @ManyToOne
     @JoinColumn(name = "ambiente_id")
     private Ambiente ambiente;
-    
+    private String userEmail;
+    private String userNome;
+   
     private String motivo;
     private LocalDate data;
     private LocalTime hora;
+    
 
     // Getters e setters
 }
