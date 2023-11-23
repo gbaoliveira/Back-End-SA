@@ -37,6 +37,15 @@ public class ReservaController {
     public Reserva criarReserva(@RequestBody Reserva reserva) {
         return reservaRepository.save(reserva);
     }
-    
+        @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteReserva(@PathVariable Long id) {
+    try {
+        reservaRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    } catch (EmptyResultDataAccessException e) {
+        return ResponseEntity.notFound().build();
+    }
+}
+
 
 }

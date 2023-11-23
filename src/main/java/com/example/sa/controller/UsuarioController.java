@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
-@CrossOrigin(origins = "http://localhost:19006") // Endereço do front
+@CrossOrigin(origins = "http://localhost:19006") 
 @RestController
 
 @RequestMapping("/usuario")
@@ -37,5 +37,19 @@ public class UsuarioController {
         if (usuario != null) {
             usuarioRepository.delete(usuario);
         }
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+    try {
+        Usuario existingUsuario = usuarioRepository.findById(id)
+            .orElseThrow(() -> new EmptyResultDataAccessException(1));
+        existingUsuario.setNome(usuario.getNome());
+        existingUsuario.setEmail(usuario.getEmail());
+        existingUsuario.setSenha(usuario.getSenha());
+        Usuario updatedUsuario = usuarioRepository.save(existingUsuario);
+        return ResponseEntity.ok(updatedUsuario);
+    } catch (EmptyResultDataAccessException e) {
+        return ResponseEntity.notFound().build();
+      }
     }
 }
